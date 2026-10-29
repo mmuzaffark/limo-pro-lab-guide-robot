@@ -1,2 +1,5 @@
-robot/** text eol=lf
-*.sh text eol=lf
+*.data binary
+*.posegraph binary
+*.pgm binary
+*.png binary
+*.db3 binary
