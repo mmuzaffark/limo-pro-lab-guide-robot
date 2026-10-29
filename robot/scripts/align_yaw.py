@@ -10,9 +10,9 @@ from tf2_ros import Buffer, TransformListener
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('yaw', nargs='?', type=float, default=0.0)
-    ap.add_argument('--tol', type=float, default=2.0, help='deg')
+    ap.add_argument('--tol', type=float, default=5.0, help='deg')
     ap.add_argument('--timeout', type=float, default=20.0)
-    ap.add_argument('--min-w', type=float, default=0.15, help='rad/s, lowest speed that still turns on carpet')
+    ap.add_argument('--min-w', type=float, default=0.20, help='rad/s, lowest speed that still turns on carpet')
     ap.add_argument('--max-w', type=float, default=0.30)
     ap.add_argument('--k', type=float, default=1.0)
     a = ap.parse_args()

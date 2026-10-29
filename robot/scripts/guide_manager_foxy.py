@@ -24,7 +24,7 @@ class Guide(Node):
         super().__init__('guide_manager')
         self.places = yaml.safe_load(open(places_file))['places']
         self.declare_parameter('wait_s', 10.0)
-        self.declare_parameter('low_volt', 11.0)
+        self.declare_parameter('low_volt', 10.5)
         self.declare_parameter('low_hold_s', 20.0)
         self.ret = True; self.goal = None; self.timer = None; self.seq = 0
         self.target = 'home'; self.volts = []; self.low_sent = False; self.last = {}
@@ -113,8 +113,7 @@ class Guide(Node):
     def send(self, name):
         self.clear_timer(); self.stop_align()
         self.seq += 1; s = self.seq; self.target = name
-        if self.goal is not None:
-            self.goal.cancel_goal_async(); self.goal = None
+        self.goal = None  # Foxy: no cancel before a new goal (cancel aborts the new one too); Nav2 preempts
         if not self.ac.wait_for_server(timeout_sec=2.0):
             self.status('error', name, 'Nav2 not running')
             if self.quitting: self.finish(False)

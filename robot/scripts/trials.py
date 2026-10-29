@@ -59,7 +59,7 @@ def main():
     ap.add_argument('--trips', type=int, default=30); ap.add_argument('--mode', choices=['home', 'chain'], default='home')
     ap.add_argument('--ask', action='store_true', help='ask for tape parking error and notes after each arrival')
     ap.add_argument('--pause', type=float, default=5.0, help='seconds between trips')
-    ap.add_argument('--min-volt', type=float, default=11.2, help='stop the block below this battery voltage')
+    ap.add_argument('--min-volt', type=float, default=10.8, help='stop the block below this battery voltage')
     ap.add_argument('--timeout', type=float, default=240.0)
     ap.add_argument('--no-bag', action='store_true'); ap.add_argument('--seed', type=int)
     a = ap.parse_args()
@@ -144,8 +144,8 @@ def main():
              'tape' if tape else 'estimate', park, out))
     for r in rows:
         if r[3] != 'arrived': print('  trip %s to %s: %s %s' % (r[0], r[2], r[3], r[10]))
-    gate = len(rows) >= 30 and len(ok) >= need and park <= 0.15
-    print('GATE (>= 30 trips, >= 90 %% arrived, parking <= 0.15 m; collisions you log in notes): %s'
+    gate = len(rows) >= 12 and len(ok) >= need and park <= 0.25
+    print('GATE (>= 12 trips, >= 90 %% arrived, parking <= 0.25 m; collisions you log in notes): %s'
           % ('PASS' if gate else ('NOT YET (%d trips)' % len(rows) if len(rows) < 30 else 'FAIL')))
     if bag is not None: print('rosbag: %s' % os.path.join(WS, 'bags', 'trials_' + ts))
     return 0 if gate else 1

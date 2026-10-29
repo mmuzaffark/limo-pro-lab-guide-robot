@@ -3,8 +3,9 @@
 # Talks to the robot's rosbridge (TCP 9090) with roslibpy: sends std_msgs/String on /guide/command,
 # shows /guide/status (JSON from guide_manager_foxy.py). Voice: 5 s mic -> faster-whisper -> place name.
 # Speech out: Windows SAPI via PowerShell. Places: %USERPROFILE%\lab\places_lab.yaml (copied by start_gui.ps1).
+# Pose line: /amcl_pose (map frame) and the error to the current target place (position m, heading deg).
 # Demo layout (guide 5.11): four big buttons Home, Auditorium, Library, Cafeteria (names = keys in places_lab.yaml).
-import json, os, queue, subprocess, sys, threading, time, tkinter as tk
+import json, math, os, queue, subprocess, sys, threading, time, tkinter as tk
 from tkinter import messagebox
 import yaml
 from rapidfuzz import process, fuzz
@@ -35,6 +36,24 @@ def load_places():
 
 
 ROBOT_PLACES = load_places()
+
+
+def load_coords():
+    try:
+        p = (yaml.safe_load(open(os.path.join(LAB, 'places_lab.yaml'))) or {}).get('places') or {}
+    except OSError:
+        return {}
+    c = {}
+    for k, v in p.items():
+        try:
+            c[k] = (float(v[0]), float(v[1]), float(v[2])) if isinstance(v, (list, tuple)) else \
+                   (float(v['x']), float(v['y']), float(v.get('yaw', 0.0)))
+        except (KeyError, IndexError, TypeError, ValueError):
+            pass
+    return c
+
+
+COORDS = load_coords()
 # the four demo buttons: (place key on the robot, button text, colour as in the 5.11 figure)
 DEMO = [('home', 'Home', '#1f4e9e'), ('auditorium', 'Auditorium', '#7b2fa0'),
         ('library', 'Library', '#1e8449'), ('cafeteria', 'Cafeteria', '#c0590a')]
@@ -97,6 +116,9 @@ class Link:
         self.cmd = roslibpy.Topic(self.ros, '/guide/command', MSG_TYPE)
         self.st = roslibpy.Topic(self.ros, '/guide/status', MSG_TYPE)
         self.st.subscribe(lambda m: self.q.put(('status', m.get('data', ''))))
+        self.pose = roslibpy.Topic(self.ros, '/amcl_pose', 'geometry_msgs/msg/PoseWithCovarianceStamped',
+                                   throttle_rate=200, queue_length=1)
+        self.pose.subscribe(lambda m: self.q.put(('pose', m)))
         self.Message = roslibpy.Message
         threading.Thread(target=self._connect, daemon=True).start()
 
@@ -123,7 +145,23 @@ def main():
     info = tk.StringVar(value='Connecting to robot %s:%d ...' % (ip, PORT))
     link_txt = tk.StringVar(value='link: connecting')
     link = Link(ip, q)
-    state = {'was': None, 'asked': False, 'quit': False}
+    state = {'was': None, 'asked': False, 'quit': False, 'tgt': 'home'}
+    pose_txt = tk.StringVar(value='pose: waiting for /amcl_pose')
+
+    def on_pose(m):
+        try:
+            p = m['pose']['pose']; x = p['position']['x']; y = p['position']['y']; o = p['orientation']
+            yaw = math.atan2(2 * (o['w'] * o['z'] + o['x'] * o['y']), 1 - 2 * (o['y'] ** 2 + o['z'] ** 2))
+        except (KeyError, TypeError):
+            return
+        t = state['tgt']; txt = 'pose x %.2f  y %.2f  heading %.0f deg' % (x, y, math.degrees(yaw)); ok = False
+        if t in COORDS:
+            px, py, pyaw = COORDS[t]
+            d = math.hypot(px - x, py - y)
+            h = math.degrees(math.atan2(math.sin(pyaw - yaw), math.cos(pyaw - yaw)))
+            txt += '    |    error to %s: %.2f m, %+.1f deg' % (t.replace('_', ' '), d, h)
+            ok = d <= 0.25 and abs(h) <= 11.5
+        pose_txt.set(txt); pl.config(fg='#080' if ok else '#000')
 
     def on_status(raw):
         try:
@@ -131,8 +169,10 @@ def main():
         except ValueError:
             d = {'state': '?', 'msg': raw}
         key = d.get('target') or ''
+        if key in COORDS and d.get('state') in ('going', 'aligning', 'arrived', 'idle', 'failed', 'battery', 'quitting'):
+            state['tgt'] = key
         tgt = key.replace('_', ' ')
-        busy = d.get('state') in ('going', 'battery', 'quitting')
+        busy = d.get('state') in ('going', 'aligning', 'battery', 'quitting')
         for k, b in buttons.items():  # the place the robot is heading for stays highlighted
             b.config(relief='sunken' if busy and k == key else 'raised')
         v = d.get('battery')
@@ -163,6 +203,7 @@ def main():
             elif kind == 'heard':
                 entry.delete(0, 'end'); entry.insert(0, data); send(to_command(data))
             elif kind == 'info': info.set(data)
+            elif kind == 'pose': on_pose(data)
         c = link.connected()
         if state['quit'] and state['was'] and not c and not state.get('closing'):  # robot software already gone
             state['closing'] = True; root.after(3000, root.destroy)
@@ -225,6 +266,7 @@ def main():
 
     tk.Button(ctl, text='QUIT', width=10, bg='#333', fg='white', command=quit_all).pack(side='left', padx=4)
     tk.Label(root, textvariable=info, anchor='w', width=70).pack(padx=10, pady=(8, 0))
+    pl = tk.Label(root, textvariable=pose_txt, anchor='w', width=70, font=('Consolas', 10)); pl.pack(padx=10)
     lbl = tk.Label(root, textvariable=link_txt, anchor='w', width=70); lbl.pack(padx=10, pady=(0, 8))
     root.after(200, poll)
     root.mainloop()

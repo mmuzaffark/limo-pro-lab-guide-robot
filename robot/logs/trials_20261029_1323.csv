@@ -1,0 +1,13 @@
+trip,from,place,result,time_to_place_s,time_round_trip_s,est_err_m,est_yaw_err_deg,tape_err_m,battery_v,status_msg,notes
+1,home,auditorium,arrived,32.3,123.2,0.193,4.5,,11.60,returning home in 10 s,
+2,home,library,arrived,36.8,124.7,0.177,4.1,,11.60,returning home in 10 s,
+3,home,cafeteria,arrived,18.3,90.7,0.143,4.6,,11.60,returning home in 10 s,
+4,home,library,arrived,36.1,129.5,0.156,5.1,,11.50,returning home in 10 s,
+5,home,auditorium,arrived,30.6,134.8,0.176,3.9,,11.50,returning home in 10 s,
+6,home,cafeteria,arrived,18.6,87.9,0.171,4.3,,11.50,returning home in 10 s,
+7,home,auditorium,arrived,27.3,125.0,0.269,4.1,,11.40,returning home in 10 s,
+8,home,library,arrived,41.0,133.2,0.156,4.6,,11.40,returning home in 10 s,
+9,home,cafeteria,arrived,20.7,105.8,0.168,4.7,,11.40,returning home in 10 s,
+10,home,auditorium,arrived,33.0,204.0,0.170,4.0,,11.30,returning home in 10 s,
+11,home,library,arrived,39.0,139.8,0.146,4.9,,11.20,returning home in 10 s,
+12,home,cafeteria,arrived,18.5,95.1,0.178,3.9,,11.20,returning home in 10 s,

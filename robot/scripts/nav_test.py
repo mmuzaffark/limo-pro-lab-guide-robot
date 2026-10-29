@@ -69,7 +69,8 @@ def main():
             dt = time.time() - t0
             if st == 'SUCCEEDED' and not a.no_align:
                 subprocess.run(['python3', os.path.join(WS, 'scripts', 'align_yaw.py'), '%.1f' % math.degrees(yaw)])
-            for _ in range(10): rclpy.spin_once(n, timeout_sec=0.05)
+            te = time.time() + 2.0
+            while time.time() < te: rclpy.spin_once(n, timeout_sec=0.05)
             try:
                 tr = buf.lookup_transform('map', 'base_link', Time()).transform
                 ex = math.hypot(tr.translation.x - x, tr.translation.y - y)

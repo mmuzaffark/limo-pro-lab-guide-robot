@@ -28,10 +28,15 @@ Generated from `C:\Users\mmuza\limo_lab_repo\robot\logs` by `make_report.py`.
 | 2026-10-29 10:48 | 1 | 0 | 0 | – / – | – | 11.90 → 11.90 |
 | 2026-10-29 10:52 | 1 | 0 | 0 | – / – | – | 11.90 → 11.90 |
 | 2026-10-29 11:07 | 6 | 4 | 67 | 0.132 / 0.143 | – | 11.60 → 11.30 |
-| **All** | 15 | 4 | 27 | 0.132 | – | |
+| 2026-10-29 12:25 | 6 | 5 | 83 | 0.196 / 0.238 | – | 12.40 → 12.20 |
+| 2026-10-29 12:32 | 2 | 2 | 100 | 0.226 / 0.246 | – | 12.30 → 12.30 |
+| 2026-10-29 12:44 | 6 | 6 | 100 | 0.179 / 0.233 | – | 12.20 → 12.10 |
+| **All** | 29 | 17 | 59 | 0.177 | – | |
 
-Failures: auditorium ABORTED; cafeteria ABORTED; library ABORTED; auditorium ABORTED; cafeteria ABORTED; auditorium ABORTED; cafeteria ABORTED; auditorium ABORTED; auditorium ABORTED; cafeteria TIMEOUT; cafeteria TIMEOUT
+Failures: auditorium ABORTED; cafeteria ABORTED; library ABORTED; auditorium ABORTED; cafeteria ABORTED; auditorium ABORTED; cafeteria ABORTED; auditorium ABORTED; auditorium ABORTED; cafeteria TIMEOUT; cafeteria TIMEOUT; cafeteria TIMEOUT
 
 ## Guide trials (Stage 11)
 
-No `trials_*.csv` yet.
+| Run | Goals | Reached | Success % | Parking own estimate mean / max (m) | Parking tape mean (m) | Battery start → end (V) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2026-10-29 13:23 | 12 | 12 | 100 | 0.175 / 0.269 | – | 11.60 → 11.20 |

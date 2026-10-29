@@ -1,0 +1,8 @@
+n,place,result,time_s,est_err_m,est_yaw_err_deg,tape_err_m,battery_v
+1,auditorium,SUCCEEDED,29.0,0.194,3.5,,12.20
+2,cafeteria,SUCCEEDED,49.8,0.193,4.6,,12.20
+3,library,SUCCEEDED,28.8,0.132,5.0,,12.20
+4,auditorium,SUCCEEDED,18.8,0.233,5.2,,12.20
+5,cafeteria,SUCCEEDED,75.5,0.188,5.3,,12.10
+6,library,SUCCEEDED,30.5,0.134,4.1,,12.10
+7,home,SUCCEEDED,87.6,0.169,4.0,,12.10
