@@ -7,11 +7,14 @@ scp -rq limo:guide_ws/params limo:guide_ws/scripts limo:guide_ws/maps limo:guide
 scp -q "limo:guide_ws/logs/*.csv" "$R\robot\logs\" 2>$null
 scp -q "limo:guide_ws/logs/auto_map_*.txt" "$R\robot\logs\" 2>$null
 Copy-Item "$lab\*.py", "$lab\*.ps1" "$R\laptop\" -Force
+if (Test-Path "$lab\install_guide.sh") { Copy-Item "$lab\install_guide.sh" "$R\" -Force }
+if (Test-Path "$lab\lab_places_map_v2.png") { Copy-Item "$lab\lab_places_map_v2.png" "$R\laptop\" -Force }
 if (Test-Path "$lab\places_lab.yaml") { Copy-Item "$lab\places_lab.yaml" "$R\laptop\" -Force }
 $env:PYTHONIOENCODING = "utf-8"; [Console]::OutputEncoding = [Text.Encoding]::UTF8
 py -X utf8 "$lab\make_report.py" "$R\robot\logs" | Set-Content -Encoding utf8 "$R\RESULTS.md"
 Set-Location $R
 git add -A robot laptop RESULTS.md
+if (Test-Path install_guide.sh) { git add install_guide.sh }
 git diff --cached --quiet
 if ($LASTEXITCODE -eq 0) { "nothing new to commit" } else { git commit -q -m $Msg }
 git push -q origin main

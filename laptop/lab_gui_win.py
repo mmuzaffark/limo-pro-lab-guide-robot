@@ -55,8 +55,9 @@ def load_coords():
 
 COORDS = load_coords()
 # the four demo buttons: (place key on the robot, button text, colour as in the 5.11 figure)
-DEMO = [('home', 'Home', '#1f4e9e'), ('auditorium', 'Auditorium', '#7b2fa0'),
-        ('library', 'Library', '#1e8449'), ('cafeteria', 'Cafeteria', '#c0590a')]
+# grid order = layout of lab_places_map_v2.png (Home top right; counter-clockwise: Home, Cafeteria, Library, Auditorium)
+DEMO = [('cafeteria', 'Cafeteria', '#c0590a'), ('home', 'Home', '#1f4e9e'),
+        ('library', 'Library', '#1e8449'), ('auditorium', 'Auditorium', '#7b2fa0')]
 PLACES = ROBOT_PLACES + [k for k, _, _ in DEMO if k not in ROBOT_PLACES]  # voice also knows the demo names
 SPOKEN = [p.replace('_', ' ') for p in PLACES]
 _model = None
