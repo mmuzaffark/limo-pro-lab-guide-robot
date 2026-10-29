@@ -2,6 +2,18 @@
 
 A guide robot on the AgileX Limo Pro (ROS 2 Foxy, Jetson): a visitor picks a place by button or voice on a laptop GUI, the robot drives there with Nav2, turns to face the place, waits 10 s and returns home. Demo room 3.0 × 3.4 m with four places (Home, Auditorium, Library, Cafeteria). The Gazebo simulation of the same guide is in [limo-ros2-campus-guide-robot](https://github.com/mmuzaffark/limo-ros2-campus-guide-robot).
 
+## Demo video
+
+[![Lab guide robot demo](https://img.youtube.com/vi/WnRJRKCcmM4/hqdefault.jpg)](https://youtu.be/WnRJRKCcmM4)
+
+Watch on YouTube: <https://youtu.be/WnRJRKCcmM4>
+
+## Map and places
+
+![Lab map lab_v1 with Home and the three guide places](docs/lab_places_map.png)
+
+Demo map `robot/maps/lab_v1` (3.0 × 3.4 m, 5 cm cells), drawn turned 180° so Home is top right. Coordinates are in the map frame (m); arrows show the heading on arrival. Places are in `robot/places_lab.yaml`.
+
 ## Results (29 Oct 2026)
 
 | Test | Result |

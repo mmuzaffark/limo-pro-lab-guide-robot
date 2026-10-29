@@ -15,7 +15,7 @@ $env:PYTHONIOENCODING = "utf-8"; [Console]::OutputEncoding = [Text.Encoding]::UT
 py -X utf8 "$lab\make_report.py" "$R\robot\logs" | Set-Content -Encoding utf8 "$R\RESULTS.md"
 Set-Location $R
 git add -A robot laptop RESULTS.md
-foreach ($f in "install_guide.sh", "README.md") { if (Test-Path $f) { git add $f } }
+foreach ($f in "install_guide.sh", "README.md", "docs") { if (Test-Path $f) { git add -A $f } }
 git diff --cached --quiet
 if ($LASTEXITCODE -eq 0) { "nothing new to commit" } else { git commit -q -m $Msg }
 git push -q origin main
