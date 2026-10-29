@@ -29,6 +29,7 @@ class Guide(Node):
         self.ret = True; self.goal = None; self.timer = None; self.seq = 0
         self.target = 'home'; self.volts = []; self.low_sent = False; self.last = {}
         self.quitting = False; self.home_tries = 0; self.done = False
+        self.align = None; self.align_timer = None; self.declare_parameter('align', True)
         self.ac = ActionClient(self, NavigateToPose, 'navigate_to_pose')
         self.pub = self.create_publisher(String, '/guide/status', 10)
         self.create_subscription(String, '/guide/command', self.on_cmd, 10)
@@ -110,7 +111,7 @@ class Guide(Node):
             self.timer.cancel(); self.destroy_timer(self.timer); self.timer = None
 
     def send(self, name):
-        self.clear_timer()
+        self.clear_timer(); self.stop_align()
         self.seq += 1; s = self.seq; self.target = name
         if self.goal is not None:
             self.goal.cancel_goal_async(); self.goal = None
@@ -139,11 +140,18 @@ class Guide(Node):
         self.goal = h
         h.get_result_async().add_done_callback(lambda r: self.on_result(r, name, s))
 
-    def on_result(self, r, name, s):
+    def on_result(self, r, name, s, aligned=False):
         if s != self.seq:
             return
         self.goal = None
         st = r.result().status
+        if st == GoalStatus.STATUS_SUCCEEDED and not aligned and self.get_parameter('align').value:
+            self.status('aligning', name, 'turning to the place heading')
+            self.align = subprocess.Popen(['python3', os.path.expanduser('~/guide_ws/scripts/align_yaw.py'),
+                                           '%.1f' % math.degrees(self.places[name][2])],
+                                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+            self.align_timer = self.create_timer(0.3, lambda: self.align_poll(r, name, s))
+            return
         if self.quitting:
             if st == GoalStatus.STATUS_SUCCEEDED: self.finish(True)
             else: self.home_failed()
@@ -161,6 +169,23 @@ class Guide(Node):
             self.status('failed', name, 'navigation status %d' % st)
             if name != 'home':
                 self.send('home')
+
+    # ---------- heading alignment (align_yaw.py, non-blocking) ----------
+    def stop_align(self):
+        if self.align_timer is not None:
+            self.align_timer.cancel(); self.destroy_timer(self.align_timer); self.align_timer = None
+        if self.align is not None:
+            if self.align.poll() is None:
+                try: os.killpg(self.align.pid, signal.SIGINT)
+                except OSError: pass
+            self.align = None
+
+    def align_poll(self, r, name, s):
+        if self.align is not None and self.align.poll() is None:
+            return
+        self.stop_align()
+        if s == self.seq:
+            self.on_result(r, name, s, aligned=True)
 
     # ---------- quit ----------
     def home_failed(self):

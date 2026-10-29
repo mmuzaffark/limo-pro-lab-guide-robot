@@ -1,0 +1,73 @@
+AUTO MAP REPORT 20261027_1315
+result:          time limit 25 min
+returned home:   NO
+home error (SLAM): 8.41 m, -84.0 deg
+duration:        28.2 min
+path driven:     111.7 m
+free area:       193.4 m2
+walls bbox:      19.60 x 19.35 m
+grid:            406x397 @ 0.05 m
+battery:         12.5 -> 12.3 V
+map files:       /home/agilex/guide_ws/maps/lab_auto_20261027_1315.{pgm,yaml,posegraph,data}  (copied to maps/lab_auto.*)
+
+timeline:
+[13:15:34] waiting for /map, map->base_link TF and Nav2 (up to 120 s) ...
+[13:15:35] stack ready after 1 s
+[13:15:38] battery 12.50 V (start needs >= 11.5 V)
+[13:15:38] 360 deg scan turn at 0.30 rad/s
+[13:16:01] turned 360 deg
+[13:16:01] explore_lite started (log: logs/am_20261027_1315_explore.log)
+[13:16:31] exploring  30 s  path 3.5 m  free 49.6 m2  battery 12.40 V
+[13:17:01] exploring  60 s  path 5.7 m  free 71.5 m2  battery 12.40 V
+[13:17:31] exploring  90 s  path 8.8 m  free 82.6 m2  battery 12.40 V
+[13:18:01] exploring 120 s  path 11.1 m  free 82.8 m2  battery 12.40 V
+[13:18:31] exploring 150 s  path 12.5 m  free 86.1 m2  battery 12.40 V
+[13:19:01] exploring 180 s  path 15.2 m  free 94.4 m2  battery 12.40 V
+[13:19:31] exploring 210 s  path 17.8 m  free 96.0 m2  battery 12.30 V
+[13:20:01] exploring 240 s  path 20.5 m  free 96.2 m2  battery 12.40 V
+[13:20:31] exploring 270 s  path 22.9 m  free 97.5 m2  battery 12.40 V
+[13:21:01] exploring 300 s  path 26.1 m  free 102.2 m2  battery 12.40 V
+[13:21:31] exploring 330 s  path 28.4 m  free 108.6 m2  battery 12.40 V
+[13:22:01] exploring 360 s  path 32.8 m  free 110.4 m2  battery 12.40 V
+[13:22:31] exploring 390 s  path 37.2 m  free 112.8 m2  battery 12.40 V
+[13:23:01] exploring 420 s  path 40.3 m  free 125.5 m2  battery 12.40 V
+[13:23:31] exploring 450 s  path 42.2 m  free 125.9 m2  battery 12.30 V
+[13:24:01] exploring 480 s  path 45.0 m  free 126.3 m2  battery 12.40 V
+[13:24:31] exploring 510 s  path 46.2 m  free 126.4 m2  battery 12.40 V
+[13:25:01] exploring 540 s  path 47.8 m  free 126.3 m2  battery 12.30 V
+[13:25:31] exploring 570 s  path 52.2 m  free 126.3 m2  battery 12.30 V
+[13:26:01] exploring 600 s  path 56.3 m  free 131.7 m2  battery 12.40 V
+[13:26:31] exploring 630 s  path 58.5 m  free 143.0 m2  battery 12.30 V
+[13:27:01] exploring 660 s  path 60.9 m  free 147.2 m2  battery 12.30 V
+[13:27:31] exploring 690 s  path 62.6 m  free 149.2 m2  battery 12.40 V
+[13:28:01] exploring 720 s  path 62.7 m  free 149.4 m2  battery 12.30 V
+[13:28:31] exploring 750 s  path 62.7 m  free 149.5 m2  battery 12.30 V
+[13:29:01] exploring 780 s  path 62.8 m  free 149.8 m2  battery 12.30 V
+[13:29:31] exploring 810 s  path 62.8 m  free 149.9 m2  battery 12.40 V
+[13:30:01] exploring 840 s  path 64.7 m  free 151.2 m2  battery 12.30 V
+[13:30:31] exploring 870 s  path 67.5 m  free 164.4 m2  battery 12.30 V
+[13:31:01] exploring 900 s  path 71.2 m  free 166.6 m2  battery 12.30 V
+[13:31:31] exploring 930 s  path 74.7 m  free 168.0 m2  battery 12.30 V
+[13:32:01] exploring 960 s  path 78.5 m  free 168.1 m2  battery 12.30 V
+[13:32:31] exploring 990 s  path 81.3 m  free 168.5 m2  battery 12.30 V
+[13:33:01] exploring 1020 s  path 85.3 m  free 173.4 m2  battery 12.30 V
+[13:33:31] exploring 1050 s  path 89.4 m  free 176.7 m2  battery 12.30 V
+[13:34:01] exploring 1080 s  path 93.6 m  free 176.5 m2  battery 12.30 V
+[13:34:31] exploring 1110 s  path 95.6 m  free 177.9 m2  battery 12.30 V
+[13:35:01] exploring 1140 s  path 97.0 m  free 178.3 m2  battery 12.30 V
+[13:35:31] exploring 1170 s  path 97.1 m  free 178.4 m2  battery 12.30 V
+[13:36:01] exploring 1200 s  path 101.4 m  free 182.7 m2  battery 12.30 V
+[13:36:31] exploring 1230 s  path 101.6 m  free 182.5 m2  battery 12.30 V
+[13:37:01] exploring 1260 s  path 101.7 m  free 182.4 m2  battery 12.30 V
+[13:37:31] exploring 1290 s  path 101.7 m  free 182.5 m2  battery 12.30 V
+[13:38:01] exploring 1320 s  path 101.7 m  free 182.5 m2  battery 12.30 V
+[13:38:31] exploring 1350 s  path 101.8 m  free 182.4 m2  battery 12.30 V
+[13:39:01] exploring 1380 s  path 101.9 m  free 182.9 m2  battery 12.30 V
+[13:39:31] exploring 1410 s  path 101.9 m  free 183.5 m2  battery 12.30 V
+[13:40:01] exploring 1440 s  path 101.9 m  free 183.7 m2  battery 12.30 V
+[13:40:31] exploring 1470 s  path 101.9 m  free 183.5 m2  battery 12.30 V
+[13:41:01] exploration ended: time limit 25 min
+[13:41:03] returning home (attempt 1)
+[13:42:54] home goal ended with status 6
+[13:42:57] returning home (attempt 2)
+[13:43:37] home goal ended with status 6

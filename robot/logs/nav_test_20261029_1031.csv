@@ -1,0 +1,6 @@
+n,place,result,time_s,est_err_m,est_yaw_err_deg,tape_err_m,battery_v
+1,auditorium,ABORTED,68.4,1.739,4.6,,12.20
+2,cafeteria,ABORTED,67.8,1.581,3.7,,12.20
+3,library,ABORTED,68.0,2.188,178.7,,12.20
+4,auditorium,ABORTED,67.9,1.855,176.4,,12.20
+5,cafeteria,ABORTED,68.0,1.603,179.4,,12.10

@@ -1,0 +1,21 @@
+AUTO MAP REPORT 20261027_1357
+result:          complete (No frontiers found, stopping.)
+returned home:   yes
+home error (SLAM): 0.06 m, -12.0 deg
+duration:        0.7 min
+path driven:     0.0 m
+free area:       7.2 m2
+walls bbox:      3.35 x 3.55 m
+grid:            67x71 @ 0.05 m
+battery:         12.200000000000001 -> 12.200000000000001 V
+map files:       /home/agilex/guide_ws/maps/lab_auto_20261027_1357.{pgm,yaml,posegraph,data}  (copied to maps/lab_auto.*)
+
+timeline:
+[13:57:46] waiting for /map, map->base_link TF and Nav2 (up to 120 s) ...
+[13:57:47] stack ready after 2 s
+[13:57:50] battery 12.20 V (start needs >= 11.5 V)
+[13:57:50] 360 deg scan turn at 0.30 rad/s
+[13:58:16] turned 360 deg
+[13:58:16] explore_lite started (log: logs/am_20261027_1357_explore.log)
+[13:58:19] exploration ended: complete (No frontiers found, stopping.)
+[13:58:22] returning home (attempt 1)

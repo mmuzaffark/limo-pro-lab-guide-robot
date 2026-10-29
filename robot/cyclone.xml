@@ -1,0 +1,4 @@
+<CycloneDDS><Domain id="any">
+<General><NetworkInterfaceAddress>wlan0</NetworkInterfaceAddress></General>
+<Discovery><ParticipantIndex>auto</ParticipantIndex><MaxAutoParticipantIndex>120</MaxAutoParticipantIndex></Discovery>
+</Domain></CycloneDDS>
