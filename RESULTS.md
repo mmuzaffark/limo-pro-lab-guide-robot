@@ -1,6 +1,6 @@
 ﻿# Real Limo Pro: results
 
-Generated from `C:\Users\mmuza\limo_ws_repo\robot\logs` by `make_report.py`.
+Generated from `C:\Users\mmuza\limo_lab_repo\robot\logs` by `make_report.py`.
 
 ## Odometry calibration (Stage 3)
 

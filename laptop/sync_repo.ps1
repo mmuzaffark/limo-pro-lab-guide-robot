@@ -1,7 +1,7 @@
-# sync_repo.ps1 [-Msg "commit message"] : robot + laptop files and logs into the GitHub repo, RESULTS.md, push
+﻿# sync_repo.ps1 [-Msg "commit message"] : robot + laptop files and logs into the GitHub repo, RESULTS.md, push
 param([string]$Msg = "Real Limo Pro update $(Get-Date -Format yyyy-MM-dd)")
-$lab = "$env:USERPROFILE\lab"; $R = "$env:USERPROFILE\limo_ws_repo"
-if (-not (Test-Path $R)) { git clone git@github.com:mmuzaffark/limo-ros2-campus-guide-robot.git $R }
+$lab = "$env:USERPROFILE\lab"; $R = "$env:USERPROFILE\limo_lab_repo"
+if (-not (Test-Path $R)) { git clone git@github.com:mmuzaffark/limo-pro-lab-guide-robot.git $R }
 New-Item -ItemType Directory -Force "$R\robot\logs", "$R\laptop" | Out-Null
 scp -rq limo:guide_ws/params limo:guide_ws/scripts limo:guide_ws/maps limo:guide_ws/launch limo:guide_ws/places_lab.yaml limo:guide_env.sh limo:guide_ws/cyclone.xml "$R\robot\"
 scp -q "limo:guide_ws/logs/*.csv" "$R\robot\logs\" 2>$null
