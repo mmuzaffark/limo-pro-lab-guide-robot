@@ -159,7 +159,7 @@ def main():
             px, py, pyaw = COORDS[t]
             d = math.hypot(px - x, py - y)
             h = math.degrees(math.atan2(math.sin(pyaw - yaw), math.cos(pyaw - yaw)))
-            txt += '    |    error to %s: %.2f m, %+.1f deg' % (t.replace('_', ' '), d, h)
+            txt += '\nerror to %s: %.2f m, %+.1f deg' % (t.replace('_', ' '), d, h)
             ok = d <= 0.25 and abs(h) <= 11.5
         pose_txt.set(txt); pl.config(fg='#080' if ok else '#000')
 
@@ -266,7 +266,7 @@ def main():
 
     tk.Button(ctl, text='QUIT', width=10, bg='#333', fg='white', command=quit_all).pack(side='left', padx=4)
     tk.Label(root, textvariable=info, anchor='w', width=70).pack(padx=10, pady=(8, 0))
-    pl = tk.Label(root, textvariable=pose_txt, anchor='w', width=70, font=('Consolas', 10)); pl.pack(padx=10)
+    pl = tk.Label(root, textvariable=pose_txt, anchor='w', justify='left', width=70, font=('Consolas', 10)); pl.pack(padx=10)
     lbl = tk.Label(root, textvariable=link_txt, anchor='w', width=70); lbl.pack(padx=10, pady=(0, 8))
     root.after(200, poll)
     root.mainloop()
