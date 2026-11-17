@@ -96,3 +96,8 @@ Robot values that may differ on another unit: lidar offset x = 0.09 m in `launch
 | [cra-ros-pkg/robot_localization](https://github.com/cra-ros-pkg/robot_localization) | EKF: wheel speed + IMU yaw rate |
 | [RobotWebTools/rosbridge_suite](https://github.com/RobotWebTools/rosbridge_suite), [roslibpy](https://github.com/gramaziokohler/roslibpy) | Laptop link |
 | [faster-whisper](https://github.com/SYSTRAN/faster-whisper), [RapidFuzz](https://github.com/rapidfuzz/RapidFuzz) | Voice commands |
+
+## Presentation
+
+- Slides: [PowerPoint](docs/Campus_Guide_Final.pptx) | [PDF](docs/Campus_Guide_Final.pdf)
+
