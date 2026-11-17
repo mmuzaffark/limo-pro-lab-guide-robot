@@ -99,5 +99,5 @@ Robot values that may differ on another unit: lidar offset x = 0.09 m in `launch
 
 ## Presentation
 
-- Slides: [PowerPoint](docs/Campus_Guide_Final.pptx) | [PDF](docs/Campus_Guide_Final.pdf)
+- Slides: [PDF](docs/Campus_Guide_Final.pdf)
 
